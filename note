@@ -1,0 +1,29 @@
+Symbol wise data : 
+https://www.nseindia.com/api/historical/cm/equity?symbol=TCS&series=[%22EQ%22]&from=30-11-2020&to=30-11-2021&csv=true
+
+https://www.nseindia.com/api/historical/cm/equity?symbol=RIIL&series=[%22EQ%22]&from=13-12-2021&to=13-12-2021&csv=true
+
+https://www.nseindia.com/api/historical/cm/equity?symbol=RIIL&series=[%22EQ%22]&from=21-12-2020&to=21-12-2021&csv=true
+
+NIFTY 200: 
+https://www1.nseindia.com/content/indices/ind_nifty200list.csv
+
+
+YAHOO:
+
+
+https://query1.finance.yahoo.com/v7/finance/download/TCS.NS?period1=1608394343&period2=1639930343&interval=1d&events=history&includeAdjustedClose=true
+
+
+<SymbolName.NS>
+
+https://query1.finance.yahoo.com/v7/finance/download/RELIANCE.NS?period1=1608394343&period2=1639930343&interval=1d&events=history&includeAdjustedClose=true
+
+
+
+https://query1.finance.yahoo.com/v7/finance/download/TCS.NS?period1=1608437591&period2=1639975606&interval=1d&events=history&includeAdjustedClose=true
+
+
+
+; NEW YAHOO LINK
+https://query1.finance.yahoo.com/v7/finance/download/TCS.NS?period1=1608422400&period2=1639958400&interval=1d&events=history&includeAdjustedClose=true

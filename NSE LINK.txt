@@ -1,0 +1,3 @@
+https://www.nseindia.com/api/historical/cm/equity?symbol=TCS&series=[%22EQ%22]&from=07-01-2020&to=07-01-2022&csv=true
+
+
