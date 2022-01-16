@@ -27,3 +27,7 @@ https://query1.finance.yahoo.com/v7/finance/download/TCS.NS?period1=1608437591&p
 
 ; NEW YAHOO LINK
 https://query1.finance.yahoo.com/v7/finance/download/TCS.NS?period1=1608422400&period2=1639958400&interval=1d&events=history&includeAdjustedClose=true
+
+
+
+https://query1.finance.yahoo.com/v7/finance/download/TCS.NS?period1=1610755200&period2=1642291200&interval=1d&events=history&includeAdjustedClose=true
