@@ -2,11 +2,12 @@
 const fs = require("fs");
 const csvtojson = require("csvtojson");
 const https = require("https");
-// const express = require("express");
-// const app = express();
+const express = require("express");
+const app = express();
 const axios = require("axios");
 const Downloader = require("nodejs-file-downloader");
 const download = require("download");
+const { json } = require("body-parser");
 
 const sym = require(`${process.cwd()}/CSV/Nifty_200_Symbol/Json/nifty200symbols.json`);
 
@@ -49,82 +50,84 @@ let oldYear = year - 2;
 let s1 = Math.round(new Date(oldYear, month, day).getTime() / 1000).toString();
 let s2 = Math.round(new Date(year, month, day).getTime() / 1000).toString();
 
-// Download the file
+//TODO: Download the file
 (async () => {
   for (let i = 0; i < 25; i++) {
-    if (i % 2 == 0) {
-      url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
-      await download(url, "./N/",);
-      console.log(i + 1);
-    }
+    url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
+    await download(url, "./N/");
+    console.log(i + 1);
   }
 })();
 
 (async () => {
   for (let i = 25; i < 50; i++) {
-    if (i % 2 != 0) {
-      url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
-      await download(url, "./N/");
-      console.log(i + 1);
-    }
+    url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
+    await download(url, "./N/");
+    console.log(i + 1);
   }
 })();
 (async () => {
   for (let i = 50; i < 75; i++) {
-    if (i % 2 != 0) {
-      url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
-      await download(url, "./N/");
-      console.log(i + 1);
-    }
+    url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
+    await download(url, "./N/");
+    console.log(i + 1);
   }
 })();
 (async () => {
   for (let i = 75; i < 100; i++) {
-    if (i % 2 != 0) {
-      url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
-      await download(url, "./N/");
-      console.log(i + 1);
-    }
+    url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
+    await download(url, "./N/");
+    console.log(i + 1);
   }
 })();
 (async () => {
   for (let i = 100; i < 125; i++) {
-    if (i % 2 != 0) {
-      url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
-      await download(url, "./N/");
-      console.log(i + 1);
-    }
+    url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
+    await download(url, "./N/");
+    console.log(i + 1);
   }
 })();
 (async () => {
   for (let i = 125; i < 150; i++) {
-    if (i % 2 != 0) {
-      url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
-      await download(url, "./N/");
-      console.log(i + 1);
-    }
+    url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
+    await download(url, "./N/");
+    console.log(i + 1);
   }
 })();
 (async () => {
   for (let i = 150; i < 175; i++) {
-    if (i % 2 != 0) {
-      url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
-      await download(url, "./N/");
-      console.log(i + 1);
-    }
+    url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
+    await download(url, "./N/");
+    console.log(i + 1);
   }
 })();
 (async () => {
   for (let i = 175; i < 200; i++) {
-    if (i % 2 != 0) {
-      url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
-      await download(url, "./N/");
-      console.log(i + 1);
-    }
+    url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
+    await download(url, "./N/");
+    console.log(i + 1);
   }
 })();
 
-
-
-
-
+//TODO: JSON PARSER
+setTimeout(async () => {
+  for (let i = 0; i < sym.length; i++) {
+    csvfilepath = `N/${sym[i].Symbol}.NS.csv`;
+    try {
+      const users = await csvtojson().fromFile(csvfilepath);
+      // Write JSON array to a file
+      fs.writeFile(
+        `${process.cwd()}/JSON/${sym[i].Symbol}.json`,
+        JSON.stringify(users, null, 4),
+        (err) => {
+          if (err) {
+            throw err;
+          }
+          console.log("JSON array is saved.");
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
+}, 15000);
