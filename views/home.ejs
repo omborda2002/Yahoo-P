@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+      *,
+      *:before,
+      *:after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #105469;
+        font-family: "Open Sans", sans-serif;
+      }
+
+      .tab {
+        display: flex;
+        justify-content: center;
+      }
+
+      table {
+        background: #012b39;
+        border-radius: 0.25em;
+        border-collapse: collapse;
+        margin: 1em;
+      }
+
+      th {
+        border-bottom: 1px solid #364043;
+        color: #e2b842;
+        font-size: 0.85em;
+        font-weight: 600;
+        padding: 0.5em 1em;
+        text-align: left;
+      }
+
+      td {
+        color: #fff;
+        font-weight: 400;
+        padding: 0.65em 1em;
+      }
+      #symbols_links {
+        cursor: pointer;
+        color: white;
+        text-decoration: none;
+      }
+      .disabled td {
+        color: #4f5f64;
+      }
+
+      tbody tr {
+        transition: background 0.25s ease;
+      }
+
+      tbody tr:hover {
+        background: #014055;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="tab">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Symbol</th>
+            <th>Date</th>
+            <th>Open</th>
+            <th>High</th>
+            <th>Low</th>
+            <th>Close</th>
+            <th>Adj Close</th>
+            <th>Volume</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <% for(let i = 0;i < 200;i++){ %>
+
+            <td><%= i+1 %></td>
+            <td>
+              <a
+                href="http://localhost:3000/symbol/<%= symbols_name[i] %>"
+                id="symbols_links"
+              >
+                <%= symbols_name[i] %>
+              </a>
+            </td>
+            <td><%= data[i][0].Date %></td>
+            <td><%= parseFloat(data[i][0].Open).toFixed(2) %></td>
+            <td><%= parseFloat(data[i][0].High).toFixed(2) %></td>
+            <td><%= parseFloat(data[i][0].Low).toFixed(2) %></td>
+            <td><%= parseFloat(data[i][0].Close).toFixed(2) %></td>
+            <td><%= parseFloat(data[i][0]["Adj Close"]).toFixed(2) %></td>
+            <td>
+              <%= data[i][0].Volume %>
+              <tr>
+                <% } %>
+              </tr>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

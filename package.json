@@ -13,10 +13,12 @@
     "axios": "^0.24.0",
     "csvtojson": "^2.0.10",
     "download": "^8.0.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.2",
     "fs": "^0.0.1-security",
     "https": "^1.0.0",
     "js-file-downloader": "^1.1.24",
-    "nodejs-file-downloader": "^4.8.1"
+    "nodejs-file-downloader": "^4.8.1",
+    "nodemon": "^2.0.15"
   }
 }

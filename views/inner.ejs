@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+      *,
+      *:before,
+      *:after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #105469;
+        font-family: "Open Sans", sans-serif;
+      }
+
+      .tab {
+        display: flex;
+        justify-content: center;
+      }
+
+      table {
+        background: #012b39;
+        border-radius: 0.25em;
+        border-collapse: collapse;
+        margin: 1em;
+      }
+
+      th {
+        border-bottom: 1px solid #364043;
+        color: #e2b842;
+        font-size: 0.85em;
+        font-weight: 600;
+        padding: 0.5em 1em;
+        text-align: left;
+      }
+
+      td {
+        color: #fff;
+        font-weight: 400;
+        padding: 0.65em 1em;
+      }
+      #symbols_links {
+        cursor: pointer;
+        color: white;
+        text-decoration: none;
+      }
+      .disabled td {
+        color: #4f5f64;
+      }
+
+      tbody tr {
+        transition: background 0.25s ease;
+      }
+
+      tbody tr:hover {
+        background: #014055;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="tab">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Symbol</th>
+            <th>Date</th>
+            <th>Open</th>
+            <th>High</th>
+            <th>Low</th>
+            <th>Close</th>
+            <th>Adj Close</th>
+            <th>Volume</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <% for(let i = 0;i < 200;i++){ %>
+
+            <td><%= i+1 %></td>
+            <td>
+                <%= name %>
+            </td>
+            <td><%= file[i].Date %></td>
+            <td><%= parseFloat(file[i].Open).toFixed(2) %></td>
+            <td><%= parseFloat(file[i].High).toFixed(2) %></td>
+            <td><%= parseFloat(file[i].Low).toFixed(2) %></td>
+            <td><%= parseFloat(file[i].Close).toFixed(2) %></td>
+            <td><%= parseFloat(file[i]["Adj Close"]).toFixed(2) %></td>
+            <td>
+              <%= file[i].Volume %>
+              <tr>
+                <% } %>
+              </tr>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
