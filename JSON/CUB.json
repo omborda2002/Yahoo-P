@@ -1,14 +1,5 @@
 [
     {
-        "Date": "2020-01-17",
-        "Open": "243.000000",
-        "High": "246.899994",
-        "Low": "238.050003",
-        "Close": "244.449997",
-        "Adj Close": "242.773514",
-        "Volume": "523778"
-    },
-    {
         "Date": "2020-01-20",
         "Open": "244.449997",
         "High": "245.000000",
@@ -4465,6 +4456,15 @@
     },
     {
         "Date": "2022-01-14",
+        "Open": "null",
+        "High": "null",
+        "Low": "null",
+        "Close": "null",
+        "Adj Close": "null",
+        "Volume": "null"
+    },
+    {
+        "Date": "2022-01-17",
         "Open": "null",
         "High": "null",
         "Low": "null",

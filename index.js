@@ -153,9 +153,13 @@ for (let i = 0; i < 200; i++) {
 //       console.log(err);
 //     }
 //   }
-// }, 15000);
+// }, 25000);
 
 app.get("/", (req, res) => {
+  // console.log(symbols_name[0],data[0]);
+  console.log(data[0][data[0].length - 1]);
+  // console.log(data[0][data[0].length-1]);
+
   res.render("home", { data, symbols_name });
 });
 
@@ -163,17 +167,10 @@ app.get("/symbol/:name", (req, res) => {
   const { name } = req.params;
 
   let file = require(`${process.cwd()}/JSON/${name}.json`);
-  console.log(file[0]);
-  // let count_down = 0;
-  // for (let i = 0; i < 200; i++) {
-  //   count_down++;
-  //   if (symbols_name[i] == name) {
-  //     break;
-  //   }
-  // }
-  // console.log(data[count_down][0]);
-  console.log(file)
-  res.render("inner", { file, name});
+  for (let i = file.length-1; i >= 0; i--) {
+    console.log(file[0]);
+  }
+  res.render("inner", { file, name });
 });
 
 app.listen(3000, () => {

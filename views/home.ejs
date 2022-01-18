@@ -96,14 +96,14 @@
                 <%= symbols_name[i] %>
               </a>
             </td>
-            <td><%= data[i][0].Date %></td>
-            <td><%= parseFloat(data[i][0].Open).toFixed(2) %></td>
-            <td><%= parseFloat(data[i][0].High).toFixed(2) %></td>
-            <td><%= parseFloat(data[i][0].Low).toFixed(2) %></td>
-            <td><%= parseFloat(data[i][0].Close).toFixed(2) %></td>
-            <td><%= parseFloat(data[i][0]["Adj Close"]).toFixed(2) %></td>
+            <td><%= data[i][data[i].length-1].Date %></td>
+            <td><%= parseFloat(data[i][data[i].length-1].Open).toFixed(2) %></td>
+            <td><%= parseFloat(data[i][data[i].length-1].High).toFixed(2) %></td>
+            <td><%= parseFloat(data[i][data[i].length-1].Low).toFixed(2) %></td>
+            <td><%= parseFloat(data[i][data[i].length-1].Close).toFixed(2) %></td>
+            <td><%= parseFloat(data[i][data[i].length-1]["Adj Close"]).toFixed(2) %></td>
             <td>
-              <%= data[i][0].Volume %>
+              <%= data[i][data[i].length-1].Volume %>
               <tr>
                 <% } %>
               </tr>
