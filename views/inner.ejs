@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <style>
       @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
 
@@ -63,13 +64,25 @@
       tbody tr:hover {
         background: #014055;
       }
+      #thh {
+        position: sticky;
+      }
+      .tab thead th {
+        position: sticky;
+        top: 0;
+        background: #012b39;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
     </style>
   </head>
 
   <body>
+    <!-- <canvas id="myChart" width="400px" height="400px"></canvas> -->
+
     <div class="tab">
       <table>
-        <thead>
+        <thead id="thh">
           <tr>
             <th>ID</th>
             <th>Symbol</th>
@@ -80,33 +93,70 @@
             <th>Close</th>
             <th>Adj Close</th>
             <th>Volume</th>
+            <th>SMA-(20)</th>
+            <th>SMA-(45)</th>
+            <th>SMA-(65)</th>
           </tr>
         </thead>
 
         <tbody>
+          <% let id = 0; %> <% for(let i = file.length-1; i >= 0; i--){ %>
           <tr>
-            <% let id = 0; %> 
-            <% for(let i = file.length-1; i >= 0; i--){ %>
-
             <td><%= id+1 %></td>
-            <td>
-                <%= name %>
-            </td>
+            <td><%= name %></td>
             <td><%= file[i].Date %></td>
             <td><%= parseFloat(file[i].Open).toFixed(2) %></td>
             <td><%= parseFloat(file[i].High).toFixed(2) %></td>
             <td><%= parseFloat(file[i].Low).toFixed(2) %></td>
             <td><%= parseFloat(file[i].Close).toFixed(2) %></td>
             <td><%= parseFloat(file[i]["Adj Close"]).toFixed(2) %></td>
-            <td>
-              <%= file[i].Volume %>
-              <tr>
-                <%id++ } %>
-              </tr>
-            </td>
+            <td><%= file[i].Volume %></td>
+            <% if (main[id]!= null) {%>
+            <td><%= parseFloat(main[id]).toFixed(2)%></td>
+            <% } %>
           </tr>
+          <%id++ }%>
         </tbody>
       </table>
     </div>
+    <!-- <script>
+      const ctx = document.getElementById("myChart");
+      const myChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          datasets: [
+            {
+              label: "# of Votes",
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)",
+              ],
+              borderColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    </script> -->
   </body>
 </html>
