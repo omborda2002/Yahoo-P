@@ -250,6 +250,19 @@ app.get("/symbol/:name", (req, res) => {
   }
   sma65();
 
+  //Golden and Death:
+  function golden_death() {
+    let mLen = main3.length - 1;
+    // console.log(main2[mLen], main3[mLen], mLen);
+    for (let i = mLen; i >= 0; i--) {
+      if (main2[i] > main3[i]) {
+        console.log(i + 1, true);
+      } else {
+        console.log(i + 1, false);
+      }
+    }
+  }
+  golden_death();
   res.render("inner", { file, name, main1, main2, main3, main4 });
 });
 
