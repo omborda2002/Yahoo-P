@@ -264,7 +264,7 @@ app.get("/symbol/:name", (req, res) => {
           // console.log(i + 1, main2[i], main3[i], true);
 
           go = {
-            No: i + 1,
+            No: i,
             bool: "Golden",
           };
           golden.push(go);
@@ -277,7 +277,7 @@ app.get("/symbol/:name", (req, res) => {
         } else {
           // console.log(i + 1, main2[i], main3[i], true);
           go = {
-            No: i + 1,
+            No: i,
             bool: "Golden",
           };
           golden.push(go);
@@ -289,7 +289,7 @@ app.get("/symbol/:name", (req, res) => {
         if (co == 0) {
           // console.log(i + 1, main2[i], main3[i], false);
           go = {
-            No: i + 1,
+            No: i,
             bool: "Dead",
           };
           golden.push(go);
@@ -301,7 +301,7 @@ app.get("/symbol/:name", (req, res) => {
         } else {
           // console.log(i + 1, main2[i], main3[i], false);
           go = {
-            No: i + 1,
+            No: i,
             bool: "Dead",
           };
           golden.push(go);
@@ -313,7 +313,7 @@ app.get("/symbol/:name", (req, res) => {
     }
   }
   golden_death();
-  console.log(golden[0].No);
+  console.log(golden);
   res.render("inner", { file, name, main1, main2, main3, main4, golden });
 });
 
