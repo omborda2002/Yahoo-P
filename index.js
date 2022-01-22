@@ -20,6 +20,7 @@ app.set("views", path.join(__dirname, "/views"));
 // variable section
 const res = require("express/lib/response");
 const { name } = require("ejs");
+const { count } = require("console");
 
 const sym = require(`${process.cwd()}/CSV/Nifty_200_Symbol/Json/nifty200symbols.json`);
 let data = [];
@@ -251,19 +252,69 @@ app.get("/symbol/:name", (req, res) => {
   sma65();
 
   //Golden and Death:
+  let golden = [];
   function golden_death() {
+    let co = 0;
     let mLen = main3.length - 1;
+    let p, go;
     // console.log(main2[mLen], main3[mLen], mLen);
     for (let i = mLen; i >= 0; i--) {
       if (main2[i] > main3[i]) {
-        console.log(i + 1, true);
+        if (co == 0) {
+          // console.log(i + 1, main2[i], main3[i], true);
+
+          go = {
+            No: i + 1,
+            bool: "Golden",
+          };
+          golden.push(go);
+          p = true;
+          co++;
+        }
+
+        if (p == true) {
+          // console.log("Not");
+        } else {
+          // console.log(i + 1, main2[i], main3[i], true);
+          go = {
+            No: i + 1,
+            bool: "Golden",
+          };
+          golden.push(go);
+          p = true;
+        }
+
+        // console.log(i + 1, true);
       } else {
-        console.log(i + 1, false);
+        if (co == 0) {
+          // console.log(i + 1, main2[i], main3[i], false);
+          go = {
+            No: i + 1,
+            bool: "Dead",
+          };
+          golden.push(go);
+          p = false;
+          co++;
+        }
+        if (p == false) {
+          // console.log("Not");
+        } else {
+          // console.log(i + 1, main2[i], main3[i], false);
+          go = {
+            No: i + 1,
+            bool: "Dead",
+          };
+          golden.push(go);
+          p = false;
+        }
+
+        // console.log(i + 1, false);
       }
     }
   }
   golden_death();
-  res.render("inner", { file, name, main1, main2, main3, main4 });
+  console.log(golden[0].No);
+  res.render("inner", { file, name, main1, main2, main3, main4, golden });
 });
 
 app.listen(3000, () => {
