@@ -74,6 +74,9 @@
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
           0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
+      #cen{
+        text-align: center;
+      }
     </style>
   </head>
 
@@ -102,7 +105,7 @@
         </thead>
 
         <tbody>
-          <% let id = 0; %> <% for(let i = file.length-1; i >= 0; i--){ %>
+          <% let id = 0,p = golden.length-1; %> <% for(let i = file.length-1; i >= 0; i--){ %>
           <tr>
             <td><%= id+1 %></td>
             <td><%= name %></td>
@@ -115,17 +118,33 @@
             <td><%= file[i].Volume %></td>
             <% if (main1[id]!= null) {%>
             <td><%= parseFloat(main1[id]).toFixed(2)%></td>
+            <% }else{%>
+              <td id="cen">-</td>
             <% } %>
             <% if (main2[id]!= null) {%>
             <td><%= parseFloat(main2[id]).toFixed(2)%></td>
+            <% }else{%>
+              <td id="cen">-</td>
             <% } %>
             <% if (main3[id]!= null) {%>
             <td><%= parseFloat(main3[id]).toFixed(2)%></td>
+            <% }else{%>
+              <td id="cen">-</td>
             <% } %>
             <% if (main4[id]!= null) {%>
             <td><%= parseFloat(main4[id]).toFixed(2)%></td>
+            <% }else{%>
+              <td id="cen">-</td>
             <% } %>
-            
+            <% if(p >= 0){ %> 
+              <% if(golden[p].No == id){ %> 
+                <% if(golden[p].bool == "Golden"){ %> 
+                  <td style="background-color: #38b000;"><%= golden[p].bool %> </td>
+                <% }else{ %> 
+                  <td style="background-color: red;"><%= golden[p].bool %> </td>
+                <% } %> 
+              <%p = p - 1;} %> 
+            <% } %> 
           </tr>
           <%id++ }%>
         </tbody>
