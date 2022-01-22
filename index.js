@@ -175,26 +175,82 @@ app.get("/symbol/:name", (req, res) => {
   //   console.log(file[i].Close);
 
   // }
-  let main = [];
+  let main1 = [];
+  let main2 = [];
+  let main3 = [];
+  let main4 = [];
 
+  function sma5() {
+    let avg = 5;
+    let value;
+    let sum = 0;
+    main1 = [];
+    for (let i = file.length - 1; i > 0; i--) {
+      if (i > avg - 2) {
+        for (let j = i; j > i - 5; j--) {
+          sum += parseFloat(file[j].Close);
+        }
+        value = sum / avg;
+        main1.push(value);
+        sum = value = 0;
+      }
+    }
+  }
+  sma5();
   function sma20() {
     let avg = 20;
     let value;
     let sum = 0;
-
+    main2 = [];
     for (let i = file.length - 1; i > 0; i--) {
       if (i > avg - 2) {
         for (let j = i; j > i - 20; j--) {
           sum += parseFloat(file[j].Close);
         }
         value = sum / avg;
-        main.push(value);
+        main2.push(value);
         sum = value = 0;
       }
     }
   }
   sma20();
-  res.render("inner", { file, name, main });
+  function sma45() {
+    let avg = 45;
+    let value;
+    let sum = 0;
+    main3 = [];
+    for (let i = file.length - 1; i > 0; i--) {
+      if (i > avg - 2) {
+        for (let j = i; j > i - 45; j--) {
+          sum += parseFloat(file[j].Close);
+        }
+        value = sum / avg;
+        main3.push(value);
+        sum = value = 0;
+      }
+    }
+  }
+  sma45();
+  function sma65() {
+    let avg = 65;
+    let value;
+    let sum = 0;
+    main4 = [];
+
+    for (let i = file.length - 1; i > 0; i--) {
+      if (i > avg - 2) {
+        for (let j = i; j > i - 65; j--) {
+          sum += parseFloat(file[j].Close);
+        }
+        value = sum / avg;
+        main4.push(value);
+        sum = value = 0;
+      }
+    }
+  }
+  sma65();
+
+  res.render("inner", { file, name, main1, main2, main3, main4 });
 });
 
 app.listen(3000, () => {
