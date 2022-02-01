@@ -97,6 +97,7 @@
             <th>Adj Close</th>
             <th id="cen">%</th>
             <th>Volume</th>
+            <th>AVG-VI</th>
             <th>SMA-(5)</th>
             <th>SMA-(20)</th>
             <th>SMA-(45)</th>
@@ -118,6 +119,11 @@
             <td><%= parseFloat(file[i]["Adj Close"]).toFixed(2) %></td>
             <td id="cen"><%= parseFloat(pers[id]).toFixed(2) %></td>
             <td><%= file[i].Volume %></td>
+            <% if(finelData[id] != null){ %> 
+              <td><%= parseFloat(finelData[id]).toFixed(2)%></td>
+            <% }else{ %>
+              <td id="cen">-</td>
+            <% } %>
             <% if (main1[id]!= null) {%>
             <td><%= parseFloat(main1[id]).toFixed(2)%></td>
             <% }else{%>

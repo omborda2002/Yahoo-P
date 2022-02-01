@@ -36,45 +36,45 @@ for (let i = 0; i < 200; i++) {
 //HERE COMMENT OUT:
 
 // NSE TO Nifty 200 Download and convert into json
-// let url = "https://www1.nseindia.com/content/indices/ind_nifty200list.csv";
+let url = "https://www1.nseindia.com/content/indices/ind_nifty200list.csv";
 
-// let downloader = new Downloader({
-//   url: url,
-//   directory: `${__dirname}/CSV/Nifty_200_Symbol/CSV/`,
-//   fileName: "nifty200symbols.csv",
-//   cloneFiles: false,
-// });
-// downloader.download();
-// // console.log("Nifty 200 Symbol ===>Download");
+let downloader = new Downloader({
+  url: url,
+  directory: `${__dirname}/CSV/Nifty_200_Symbol/CSV/`,
+  fileName: "nifty200symbols.csv",
+  cloneFiles: false,
+});
+downloader.download();
+// console.log("Nifty 200 Symbol ===>Download");
 
-// let csvfilepath = `${process.cwd()}/CSV/Nifty_200_Symbol/CSV/nifty200symbols.csv`;
-// csvtojson()
-//   .fromFile(csvfilepath)
-//   .then((json) => {
-//     fs.writeFileSync(
-//       `${process.cwd()}/CSV/Nifty_200_Symbol/Json/nifty200symbols.json`,
-//       JSON.stringify(json),
-//       "utf-8",
-//       (err) => {
-//         if (err) {
-//           console.log(err);
-//         }
-//       }
-//     );
-//   });
+let csvfilepath = `${process.cwd()}/CSV/Nifty_200_Symbol/CSV/nifty200symbols.csv`;
+csvtojson()
+  .fromFile(csvfilepath)
+  .then((json) => {
+    fs.writeFileSync(
+      `${process.cwd()}/CSV/Nifty_200_Symbol/Json/nifty200symbols.json`,
+      JSON.stringify(json),
+      "utf-8",
+      (err) => {
+        if (err) {
+          console.log(err);
+        }
+      }
+    );
+  });
 
-// // Nifty 200 Data download ::
-// // DATE
-// let d = new Date();
-// let year = d.getFullYear();
-// let month = d.getMonth();
-// let day = d.getDate();
-// let oldYear = year - 2;
+// Nifty 200 Data download ::
+// DATE
+let d = new Date();
+let year = d.getFullYear();
+let month = d.getMonth();
+let day = d.getDate();
+let oldYear = year - 2;
 
-// let s1 = Math.round(new Date(oldYear, month, day).getTime() / 1000).toString();
-// let s2 = Math.round(new Date(year, month, day).getTime() / 1000).toString();
+let s1 = Math.round(new Date(oldYear, month, day).getTime() / 1000).toString();
+let s2 = Math.round(new Date(year, month, day).getTime() / 1000).toString();
 
-// //TODO: Download the file
+//TODO: Download the file
 // (async () => {
 //   for (let i = 0; i < 25; i++) {
 //     url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
@@ -133,7 +133,7 @@ for (let i = 0; i < 200; i++) {
 //   }
 // })();
 
-// //TODO: JSON PARSER
+// // TODO: JSON PARSER
 // setTimeout(async () => {
 //   for (let i = 0; i < sym.length; i++) {
 //     csvfilepath = `N/${sym[i].Symbol}.NS.csv`;
@@ -154,7 +154,7 @@ for (let i = 0; i < 200; i++) {
 //       console.log(err);
 //     }
 //   }
-// }, 35000);
+// }, 40000);
 
 app.get("/", (req, res) => {
   res.render("home", { data, symbols_name });
@@ -300,17 +300,47 @@ app.get("/symbol/:name", (req, res) => {
   golden_death();
 
   let pers = [];
-  function per(){
-    for (let i = file.length - 1; i > 0; i--){
+  function per() {
+    for (let i = file.length - 1; i > 0; i--) {
       let first = file[i];
       let second = file[i - 1];
-      let fo = ((first.Close-second.Close)/second.Close)*100;
+      let fo = ((first.Close - second.Close) / second.Close) * 100;
       pers.push(fo);
     }
   }
   per();
 
-  res.render("inner", { file, name, main1, main2, main3, main4, golden, pers });
+  let finelData = [];
+  function aveVoletileity() {
+    let minusData = [],
+      minus;
+    for (let i = file.length - 1; i >= 0; i--) {
+      minus = file[i].High - file[i].Low;
+      minusData.push(minus);
+    }
+    let sum = 0,
+      formula;
+    for (let i = 0; i < minusData.length - 9; i++) {
+      for (let j = i; j < i + 10; j++) {
+        sum = sum + minusData[j];
+        formula = sum / 10;
+      }
+      finelData.push(formula);
+      sum = 0;
+    }
+  }
+  aveVoletileity();
+  res.render("inner", {
+    file,
+    name,
+    main1,
+    main2,
+    main3,
+    main4,
+    golden,
+    pers,
+    finelData,
+  });
 });
 
 app.listen(3000, () => {
