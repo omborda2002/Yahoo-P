@@ -102,6 +102,7 @@
             <th>SMA-(20)</th>
             <th>SMA-(45)</th>
             <th>SMA-(65)</th>
+            <th>AAA</th>
             <th>GO/DE</th>
           </tr>
         </thead>
@@ -144,15 +145,28 @@
             <% }else{%>
               <td id="cen">-</td>
             <% } %>
-            <% if(p >= 0){ %> 
+            <% if(i != 0){ %> 
+              <% if(dada[i-1] == "Green"){ %> 
+              <td style="background-color: green;"><%= dada[i-1] %></td>
+              <% }else{ %> 
+                <td style="background-color: red;"><%= dada[i-1] %></td>
+              <% } %> 
+            <% }else{%>
+              <td id="cen">-</td>
+            <% } %> 
+            <% if(p >= 0){ %>
               <% if(golden[p].No == id){ %> 
                 <% if(golden[p].bool == "Golden"){ %> 
                   <td style="background-color: #38b000;"><%= golden[p].bool %> </td>
                 <% }else{ %> 
                   <td style="background-color: red;"><%= golden[p].bool %> </td>
                 <% } %> 
-              <%p = p - 1;} %> 
-            <% }%>
+              <%p = p - 1;}else{ %>
+              <td id="cen">-</td>
+              <% } %>  
+            <% } else{ %>
+              <td id="cen">-</td>
+              <% } %> 
           </tr>
           <%id++ }%>
         </tbody>

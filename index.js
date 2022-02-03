@@ -36,45 +36,45 @@ for (let i = 0; i < 200; i++) {
 //HERE COMMENT OUT:
 
 // NSE TO Nifty 200 Download and convert into json
-let url = "https://www1.nseindia.com/content/indices/ind_nifty200list.csv";
+// let url = "https://www1.nseindia.com/content/indices/ind_nifty200list.csv";
 
-let downloader = new Downloader({
-  url: url,
-  directory: `${__dirname}/CSV/Nifty_200_Symbol/CSV/`,
-  fileName: "nifty200symbols.csv",
-  cloneFiles: false,
-});
-downloader.download();
-// console.log("Nifty 200 Symbol ===>Download");
+// let downloader = new Downloader({
+//   url: url,
+//   directory: `${__dirname}/CSV/Nifty_200_Symbol/CSV/`,
+//   fileName: "nifty200symbols.csv",
+//   cloneFiles: false,
+// });
+// downloader.download();
+// // console.log("Nifty 200 Symbol ===>Download");
 
-let csvfilepath = `${process.cwd()}/CSV/Nifty_200_Symbol/CSV/nifty200symbols.csv`;
-csvtojson()
-  .fromFile(csvfilepath)
-  .then((json) => {
-    fs.writeFileSync(
-      `${process.cwd()}/CSV/Nifty_200_Symbol/Json/nifty200symbols.json`,
-      JSON.stringify(json),
-      "utf-8",
-      (err) => {
-        if (err) {
-          console.log(err);
-        }
-      }
-    );
-  });
+// let csvfilepath = `${process.cwd()}/CSV/Nifty_200_Symbol/CSV/nifty200symbols.csv`;
+// csvtojson()
+//   .fromFile(csvfilepath)
+//   .then((json) => {
+//     fs.writeFileSync(
+//       `${process.cwd()}/CSV/Nifty_200_Symbol/Json/nifty200symbols.json`,
+//       JSON.stringify(json),
+//       "utf-8",
+//       (err) => {
+//         if (err) {
+//           console.log(err);
+//         }
+//       }
+//     );
+//   });
 
-// Nifty 200 Data download ::
-// DATE
-let d = new Date();
-let year = d.getFullYear();
-let month = d.getMonth();
-let day = d.getDate();
-let oldYear = year - 2;
+// // Nifty 200 Data download ::
+// // DATE
+// let d = new Date();
+// let year = d.getFullYear();
+// let month = d.getMonth();
+// let day = d.getDate();
+// let oldYear = year - 2;
 
-let s1 = Math.round(new Date(oldYear, month, day).getTime() / 1000).toString();
-let s2 = Math.round(new Date(year, month, day).getTime() / 1000).toString();
+// let s1 = Math.round(new Date(oldYear, month, day).getTime() / 1000).toString();
+// let s2 = Math.round(new Date(year, month, day).getTime() / 1000).toString();
 
-//TODO: Download the file
+// //TODO: Download the file
 // (async () => {
 //   for (let i = 0; i < 25; i++) {
 //     url = `https://query1.finance.yahoo.com/v7/finance/download/${sym[i].Symbol}.NS?period1=${s1}&period2=${s2}&interval=1d&events=history&includeAdjustedClose=true`;
@@ -296,7 +296,9 @@ app.get("/symbol/:name", (req, res) => {
         }
       }
     }
+    console.log(golden);
   }
+  
   golden_death();
 
   let pers = [];
@@ -330,6 +332,44 @@ app.get("/symbol/:name", (req, res) => {
     }
   }
   aveVoletileity();
+
+  let candleB = [];
+  let candleWick = [];
+  function candleBody() {
+    for (let i = file.length - 1; i >= 0; i--) {
+      // console.log(file[i]);
+      candleB.push(Math.abs(file[i].Open - file[i].Close));
+
+      candleWick.push(
+        file[i].High -
+          Math.max(file[i].Open, file[i].Close) +
+          (Math.min(file[i].Open, file[i].Close) - file[i].Low)
+      );
+    }
+  }
+  candleBody();
+
+  let dada = [];
+  function a() {
+    let fi = file.length - 1;
+    let temp;
+    
+    for (let i = 0; i < file.length - 1; i++) {
+      // temp = i;
+      // console.log(file[i].Close);
+
+      if (file[i].Low < file[i + 1].Low) {
+        // console.log(file[i].Low, "Green");
+        dada.push("Green");
+      } else {
+        // console.log(file[i].Low, "Red");
+        dada.push("Red");
+      }
+      // temp = file[i].Close;
+    }
+  }
+  a();
+  // console.log(dada);
   res.render("inner", {
     file,
     name,
@@ -340,6 +380,9 @@ app.get("/symbol/:name", (req, res) => {
     golden,
     pers,
     finelData,
+    candleB,
+    candleWick,
+    dada
   });
 });
 
